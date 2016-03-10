@@ -1,5 +1,6 @@
 package payeasy;
 
+import static com.payeasy.payment.Intent.SALE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -8,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.payeasy.payment.Converter;
+import com.payeasy.payment.Intent;
 import com.payeasy.payment.Payment;
 import com.payeasy.payment.PaymentMethod;
 import com.payeasy.payment.converter.PaymentDTOToPaymentConverter;
@@ -30,12 +32,13 @@ public class PaymentDTOToPaymentConverterTest {
 			.build();
 		
 		PaymentDTO paymentDTO = PaymentDTO.getBuilder()
-			.withIntent("Sale")
+			.withIntent(Intent.SALE)
 			.withPayer(payerDTO)
 			.build();
 		
 		Payment payment = converter.convertFrom(paymentDTO);
 		
-		assertThat(payment.getIntent(), is(equalTo("Sale")));
+		assertThat(payment.getIntent(), is(equalTo(SALE)));
 	}
+	
 }

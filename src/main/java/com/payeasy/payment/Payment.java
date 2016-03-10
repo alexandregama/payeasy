@@ -2,12 +2,12 @@ package com.payeasy.payment;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -24,21 +24,11 @@ public class Payment implements Serializable {
 	
 	@Column(name = "intent", length = 10)
 	@NotNull
-	private String intent;
+	private Intent intent;
 	
-	@Column(name = "payer")
-	@OneToOne(optional = false)
-	@JoinColumn(name = "payer_id")
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@NotNull
 	private Payer payer;
-
-	public String getIntent() {
-		return intent;
-	}
-
-	public void setIntent(String intent) {
-		this.intent = intent;
-	}
 
 	public Long getId() {
 		return this.id;
@@ -50,6 +40,14 @@ public class Payment implements Serializable {
 
 	public void setPayer(Payer payer) {
 		this.payer = payer;
+	}
+
+	public Intent getIntent() {
+		return intent;
+	}
+
+	public void setIntent(Intent intent) {
+		this.intent = intent;
 	}
 	
 }

@@ -1,22 +1,17 @@
 package com.payeasy.payment.dto;
 
+import org.codehaus.jackson.annotate.JsonIgnoreType;
 import org.codehaus.jackson.annotate.JsonProperty;
+
+import com.payeasy.payment.Intent;
 
 public class PaymentDTO {
 
 	@JsonProperty(value = "intent")
-	private String intent;
+	private Intent intent;
 	
 	@JsonProperty(value = "payer")
 	private PayerDTO payer;
-
-	public String getIntent() {
-		return intent;
-	}
-
-	public void setIntent(String intent) {
-		this.intent = intent;
-	}
 
 	public PayerDTO getPayer() {
 		return payer;
@@ -30,6 +25,15 @@ public class PaymentDTO {
 		return new PaymentBuilder();
 	}
 	
+	public Intent getIntent() {
+		return intent;
+	}
+
+	public void setIntent(Intent intent) {
+		this.intent = intent;
+	}
+
+	@JsonIgnoreType
 	public static class PaymentBuilder {
 		
 		private PaymentDTO paymentDTO;
@@ -38,8 +42,8 @@ public class PaymentDTO {
 			paymentDTO = new PaymentDTO();
 		}
 		
-		public PaymentBuilder withIntent(String name) {
-			paymentDTO.intent = name;
+		public PaymentBuilder withIntent(Intent name) {
+			paymentDTO.setIntent(name);
 			return this;
 		}
 		

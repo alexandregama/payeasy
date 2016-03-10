@@ -2,6 +2,7 @@ package com.payeasy.payment;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,6 +22,7 @@ public class Payer implements Serializable {
 	private Long id;
 
 	@Enumerated(EnumType.STRING)
+	@Column(name = "payment_method")
 	private PaymentMethod paymentMethod;
 	
 	public Long getId() {

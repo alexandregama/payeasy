@@ -6,9 +6,13 @@ import com.payeasy.payment.PaymentMethod;
 
 public class PayerDTO {
 
-	@JsonProperty(value = "payment_method")
+	@JsonProperty("payment_method")
 	private PaymentMethod paymentMethod;
 
+	@Deprecated //Jackson eyes only
+	PayerDTO() {
+	}
+	
 	public PaymentMethod getPaymentMethod() {
 		return paymentMethod;
 	}
